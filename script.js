@@ -26,11 +26,6 @@ function showTypedText() {
 }
 
 function changeBackground() {
-    if (nameInput.value.trim() === "") {
-        resultMessage.textContent = "Please enter your name.";
-        return;
-    }
-
     const currentColor = document.body.style.backgroundColor;
 
     if (currentColor === "lightblue") {
@@ -43,10 +38,6 @@ function changeBackground() {
 }
 
 function resetPage() {
-    if (nameInput.value.trim() === "") {
-    resultMessage.textContent = "Please enter your name.";
-    return;
-}
     heading.textContent = "Event-Driven Webpage";
     nameInput.value = "";
     typingMessage.textContent = "You are typing:";
