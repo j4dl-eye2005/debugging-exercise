@@ -26,11 +26,15 @@ function showTypedText() {
 }
 
 function changeBackground() {
+    if (nameInput.value.trim() === "") {
+        resultMessage.textContent = "Please enter your name.";
+        return;
+    }
+
     const currentColor = document.body.style.backgroundColor;
 
-    if (nameInput.value.trim() === "") {
-    resultMessage.textContent = "Please enter your name.";
-    return
+    if (currentColor === "lightblue") {
+        document.body.style.backgroundColor = "#f3f4f6";
     } else {
         document.body.style.backgroundColor = "lightblue";
     }
