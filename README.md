@@ -23,13 +23,50 @@ The goal is to identify and fix common HTML and JavaScript issues in a basic int
 
 ## Debugging Table
 
-A central part of the assignment is the debugging table, which documents:
+| No. | Error Found | Type of Error | Correction Made |
+| --- | --- | --- | --- |
+| 1 | There is an incorrect file reference in the style.css syntax in HTML file | Incorrect file reference | `<link rel="stylesheet" href="style.css">` |
+| 2 | The element selector `#name` should be `#nameInput` in script.js | Incorrect element selector | `const nameInput = document.querySelector("#nameInput");` |
+| 3 | The execution of the .js script is wrongly placed in the html file which is nearly placed at the .css stylesheet instead of being inside the bottom of the body, which causes it not to work or to be executed | Syntax error | The `<script src="script.js"></script>` has to be placed near the `</body>` instead |
+| 4 | The event type “clicked” is wrong and should be “click” instead in script.js | Incorrect event type | `colorButton.addEventListener("click", changeBackground);` |
+| 5 | The username uses an assignment operator instead of a comparison operator in script.js which results in not displaying a warning message "Please enter your name." | Logical error | `if (userName === "")` |
+| 6 | The `displayGreeting` has a parentheses so the function is being executed immediately, not being passed as a handler | Incorrect event-handler assignment | `greetButton.addEventListener("click", displayGreeting);` |
+| 7 | `changeBackground()` uses `lightblue` without declaring it, so it will throw an error at runtime. | Runtime error | `document.body.style.backgroundColor = "lightblue";` |
+| 8 | The “typing message” requirement, the input should update on the `input` event, not the `change` event. | Incorrect event type | `nameInput.addEventListener("input", showTypedText);` |
+| 9 | The background color remains lightblue instead of going back to the default background color | Logical error | ```js
+function changeBackground() {
+    const currentColor = document.body.style.backgroundColor;
 
-- the error found,
-- the type of error,
-- and the correction made.
+    if (currentColor === "lightblue") {
+        document.body.style.backgroundColor = "#f3f4f6";
+    } else {
+        document.body.style.backgroundColor = "lightblue";
+    }
 
-This table is used to track the process of identifying and fixing issues in the code.
+    console.log("Background color changed.");
+}
+``` |
+| 10 | Even without typing a name, it already allows me to perform an action like changing the background or reset | Logical error | ```js
+function changeBackground() {
+    if (nameInput.value.trim() === "") {
+        resultMessage.textContent = "Please enter your name.";
+        return;
+    }
+
+    const currentColor = document.body.style.backgroundColor;
+    ...
+}
+
+function resetPage() {
+    if (nameInput.value.trim() === "") {
+        resultMessage.textContent = "Please enter your name.";
+        return;
+    }
+
+    heading.textContent = "Event-Driven Webpage";
+    ...
+}
+``` |
 
 ### Key debugging and grading checks
 
